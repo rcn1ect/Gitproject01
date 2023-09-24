@@ -2,6 +2,8 @@
 
 git process flow
 
+# Location of the public ssh key: c/users/user/.ssh/id_ed25519.pub
+
 1- create a repository in Github portal, repository name: Gitproject01
 
 2- Set up the Gitbash Workspace
@@ -33,5 +35,12 @@ git process flow
 		12-1 The files/folders have been synced between the portal and gitbash
 		12-2 Commit numbers between git bash and the repository on github portal are the same
 
+13- git clone
+
+14- git log
+
+15- Git show
+		15-1 show 					# show all commits performed; expect to see semi-column (:) at the end of the page if  the list is longer than a page
+		15-2 show "commit number" 	# to see the content of a specific change
 
 
