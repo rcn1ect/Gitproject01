@@ -33,7 +33,17 @@ Phase 1 roject Plan (Set up) ---------------------------------------------------
 3- git init 						#initiliase git, Master Branch created as part of the  git init process. 
 
 4- adding submodules
-	# git submodule add <url> Git Scripts
+	a submodule can be a folder already contained in a remote repo and therefore tracked which is now added to a new bigger repo which can be a parent directory.
+
+	# Add the submodule to trackers files and directories
+		+ git submodule add <url>     ### copy the remote repository url of the submodule and paste
+			- example:
+				. git submodule add https://github.com/rcn1ect/Gitproject01       ### add submodule Gitproject01 to a bigger Project
+		+ Confirm the submodule is now tracked
+			- git status
+		+ git commit -m " commit message"
+		+ git push origin branch_name
+
 
 	# "git help submodule" for more information
 
