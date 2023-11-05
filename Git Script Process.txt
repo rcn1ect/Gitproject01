@@ -1,4 +1,3 @@
-This is to set up git
 
 
 git process flow
@@ -44,4 +43,4 @@ git process flow
 		15-1 show 					# show all commits performed; expect to see semi-column (:) at the end of the page if  the list is longer than a page
 		15-2 show "commit number" 	# to see the content of a specific change
 
-
+16- 
