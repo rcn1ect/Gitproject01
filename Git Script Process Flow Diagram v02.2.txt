@@ -1,0 +1,189 @@
+
+
+git process flow
+
+
+Phase 1 roject Plan (Set up) --------------------------------------------------------------------------------------------------------------------------
+# Location of the public ssh key: c/users/user/.ssh/id_ed25519.pub
+
+1- create a repository in Github portal, repository name: Gitproject01
+
+2- Set up the Gitbash Workspace
+		2-1 mkdir Gitproject01		# to create the workspace
+		2-2 add contects or load file in the directory or cat >> (or >) abc.txt   # to populate the directory
+		2-3 				# Create SHA-2 SSH Private and Public Keys as well as Private Agent
+				2-3-1 Generate ssh Keys
+						2-3-1-1	ssh-keygen -t ed25519 -C "your_email@example.com"  # Create an SSH Key using ed25519 encryption with the email address provided
+						
+						2.3-1-2 Select the file to store the Secret. The defaul location is the .ssh (Hidden) folder in the Home Directory. 
+						
+						2-3-1-3 Add a Passphrase/Fingerprint (Password) 			# further secure the ssh connection
+				2-3-2 Add SSH Keys to the SSH-Agent
+						2-3-2-1 Start the SSH-Agent in the background
+							2-3-2-2 eval "$(ssh-agent -s)"  # sudo -s -H Use sudo to gain root access if required by the environment setup 
+							2-3-2-3 > Agent pid 59566
+							2-3-2-4 Add SSH Private Key to the SSH-Agent
+								ssh-add ~/.ssh/id_ed25519       # Change the location of the file to point to the location of the private/public key.
+							2-3-2-5 Add SSH-Public Key to Github Account
+							
+						
+						
+		
+
+3- git init 						#initiliase git, Master Branch created as part of the  git init process. 
+
+4- 
+
+5- git status 						# to check the status of files and folders created or ammended. 
+
+6- git config --global				#Globlal parameter config. Choices of parameters are: Globlal, System and Local
+		6-0 Git config --list
+		6-1 Git config --global init.defaultBranch <Branch Name>  # used to configure the default branch name. alternatives include: Main, Trunck, Production.   
+		user.name
+		6-2 git config --global user.email
+		6-3 6-2 git config --global user.name
+		6-4 git config --list verify config parameter
+		6-5 alternatively, used git config --global --list to verify Gobal parameters only.
+
+7- git add 							# Track changes (stage files ready to commit
+		7-1 add . 					# for all files within the directory
+			7-1-1 git rm --cached <filename.ext>   # To unstage the file.  
+							- example git rm 'Git Script Process Flow Diagram.txt'
+		7-2 add abc.txt 			# for specific files within the folder
+		
+		7-a git ignore 				# to avoid tracking all files
+		7.b git status 				# to verify that the required files are not being tracked
+		
+		
+8-  First commit to local repository
+	git commit -m " insert message"	#commit file to local repository
+
+9- git log 							# view logs and changes being tracked
+
+10- git remote  add origin git@github:rcn1ect/Gitproject01	#connect to the node/local database to github portal. use SSH config as https protoco is deprecated
+	
+	10-1 Before pushing code to Github repository, a pull request must be made from the Node Repository to sync all the contents created on the portal
+	
+		git pull origin main             # verify in the folders and files in the worskpace have been updated (Readme.md file - where available in the portal repository, as well as any other file in the portal)
+		
+		git status
+		git log 					# check that tracked files and foldres have been committed and are ready to be pushed. also check the direction of the symbolic pointer (Head), is it pointing to the Master/Main branch (HEAD -> master)
+		
+		
+NOTE: GIT  REBASING CONFIGURATION
+			+ git config pull.rebase false  # merge (the default strategy)
+			+ git config pull.rebase true   # rebase
+			+ git config pull.ff only       # fast-forward only
+
+
+
+		
+11- First commit to Github repository 
+	git push origin main			#push the code to from the laptop to github portal (Main Branch)
+		
+		11-1 What to do if error "error: failed to push some refs to 'github.com:rcn1ect/Team_Project.git' " is raised?
+				- Verify that the name of the branches has been typed properly. ie: Master or Main
+				- 
+		
+12 Cross verify
+		12-1  git show
+		12-2  git status  			# Verify that there is nothing to commit and the working tree is clean. 
+		12-2  git log 				# Verify that the new push-commit to github repo is successful, 
+				+ New push-commit to github repo hash, 
+				+ push-commit to github repo made to the right branch, symbolic pointer direction ok, (HEAD -> master)
+				+ Author's user.name and user.email are ok and match the details of the author (very important for git blame and conflict management
+				+ push-commit to github repo message in place, consise and relevant to the nature of the commit
+		The files/folders have been synced between the portal and Git CLI
+		12-2 Commit numbers between git bash/CLI and the repository on github portal are the same
+
+NOTE: AT THIS POINT, THE BRANCH SHOULD BE ONE COMMIT AHEAD OF OTHER BRANCHES. THEREFORE A PROMPT FOR A PULL REQUEST SHOULD BE MADE ON THE PORTAL. - Verify that merging is possible and there is no possibility of Merge Conflict before creating a Pull Request. If Conflict in place, organise a Code Review meeting with relevant stakeholders to resolve conflict and ammend the portal accordingly
+
+13- Git Portal
+			+ Review Repository and verify that:
+				- The files have been properly pushed
+				- Commit Hashes match (Node and Portal repositories)
+				- Check the commit summary on Github portal vs the result of GIT LOG command (from git CLI)
+				- git blame
+			+ Pull Request
+				- 
+			+ Merge Branches (Fast Forward 3-way commits)
+				- Squash and Merge
+				- Merge Commit
+				- Rebase and Merge
+			
+			
+
+Phase 2 Project Coding --------------------------------------------------------------------------------------------------------------------------
+
+Branching
+
+1- 
+	1-1 git clone
+	1-2 github fork
+
+2- git log
+
+3- Git show
+		3-1 show 					# show all commits performed; expect to see semi-column (:) at the end of the page if  the list is longer than a page
+		3-2 show "commit number" 	# to see the content of a specific change
+4- git reset						# to reset the project to a given checkpoint using the commit hash
+
+5- git checkout branch_name			# to switch branches
+6- git branch  
+		6-1 -- list
+		6-2 -- show-current
+
+git stash 
+git apply
+git diff
+
+
+7- git add
+8- git commit
+9- git push origin main
+10- 								# compare and create PR
+
+
+Phase 3 Project  Build --------------------------------------------------------------------------------------------------------------------------
+Merging
+	Initial Merging
+	1- Owner
+			git checkout main
+			git pull
+			
+		2- Collaborator
+			git checkout main
+			git pull
+
+		# Following the first round of pulls by all collaborators, everything is uptodate, to avoid everyone editing and overwriting the same version, branches are created by all collaborators
+
+		# during code commit they'll add, commit and push changes to their respective branches
+
+		Dev 1
+		create a PR
+		PR Reviewed 
+		Code merged to the main branch
+	
+	Merging Conflict Resolution
+		Go to main branch
+		pull the latest code changes
+		goto side branch
+		rebase
+		resolve the conflict
+		git add/rm conflicted files
+		git rebase --continue
+		git commit --ammend
+		git push origin dev_branch
+		view conflict management status
+			git diff
+			git status
+			git log
+			git show
+	Git pull -From the main branch	
+
+Phase 4 roject  --------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+Phase 5 roject  --------------------------------------------------------------------------------------------------------------------------
