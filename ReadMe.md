@@ -2,45 +2,124 @@
 
 git process flow
 
+
+Phase 1 roject Plan (Set up) --------------------------------------------------------------------------------------------------------------------------
 # Location of the public ssh key: c/users/user/.ssh/id_ed25519.pub
 
 1- create a repository in Github portal, repository name: Gitproject01
 
 2- Set up the Gitbash Workspace
 		2-1 mkdir Gitproject01		# to create the workspace
-		2-2 cat >> (or >) abc.txt   # to create a file (s)
+		2-2 add contects or load file in the directory or cat >> (or >) abc.txt   # to populate the directory
 
-4- git init 						#initiliase git
+3- git init 						#initiliase git
+
+4- 
 
 5- git status 						# to check the status of files and folders created or ammended. 
 
 6- git config --global				#Globlal parameter config. Choices of parameters are: Globlal, System and Local
-		6-1  user.name
+		6-0 Git config --list
+		6-1 Git config --global init.defaultBranch <Branch Name>  # used to configure the default branch name. alternatives include: Main, Trunck, Production.   
+		user.name
 		6-2 git config --global user.email
 		6-3 git config --list verify config parameter
 
 7- git add 							# Track changes (stage files ready to commit
 		7-1 add . 					# for all files within the directory
 		7-2 add abc.txt 			# for specific files within the folder
-
-8- git commit -m 					#commit file to local repository
+		
+		7-a git ignore 				# to avoid tracking all files
+		7.b git status 				# to verify that the required files are not being tracked
+		
+		
+8-  First commit to local repository
+	git commit -m " insert message"	#commit file to local repository
 
 9- git log 							# view logs and changes being tracked
 
 10- git remote  add origin git@github:rcn1ect/Gitproject01	#connect to the node/local database to github portal. use SSH config as https protoco is deprecated
 
-11- git push origin main			#push the code to from the laptop to github portal
+11- First commit to Github repository 
+	git push origin main			#push the code to from the laptop to github portal (Main Branch)
 
 12 Cross verify
-		12-1 The files/folders have been synced between the portal and gitbash
+		12-1 The files/folders have been synced between the portal and Git CLI
 		12-2 Commit numbers between git bash and the repository on github portal are the same
 
-13- git clone
-
-14- git log
-
-15- Git show
-		15-1 show 					# show all commits performed; expect to see semi-column (:) at the end of the page if  the list is longer than a page
-		15-2 show "commit number" 	# to see the content of a specific change
 
 
+Phase 2 Project Coding --------------------------------------------------------------------------------------------------------------------------
+
+Branching
+
+1- 
+	1-1 git clone
+	1-2 github fork
+
+2- git log
+
+3- Git show
+		3-1 show 					# show all commits performed; expect to see semi-column (:) at the end of the page if  the list is longer than a page
+		3-2 show "commit number" 	# to see the content of a specific change
+4- git reset						# to reset the project to a given checkpoint using the commit hash
+
+5- git checkout branch_name			# to switch branches
+6- git branch  
+		6-1 -- list
+		6-2 -- show-current
+
+git stash 
+git apply
+git diff
+
+
+7- git add
+8- git commit
+9- git push origin main
+10- 								# compare and create PR
+
+
+Phase 3 Project  Build --------------------------------------------------------------------------------------------------------------------------
+Merging
+	Initial Merging
+	1- Owner
+			git checkout main
+			git pull
+			
+		2- Collaborator
+			git checkout main
+			git pull
+
+		# Following the first round of pulls by all collaborators, everything is uptodate, to avoid everyone editing and overwriting the same version, branches are created by all collaborators
+
+		# during code commit they'll add, commit and push changes to their respective branches
+
+		Dev 1
+		create a PR
+		PR Reviewed 
+		Code merged to the main branch
+	
+	Merging Conflict Resolution
+		Go to main branch
+		pull the latest code changes
+		goto side branch
+		rebase
+		resolve the conflict
+		git add/rm conflicted files
+		git rebase --continue
+		git commit --ammend
+		git push origin dev_branch
+		view conflict management status
+			git diff
+			git status
+			git log
+			git show
+	Git pull -From the main branch	
+
+Phase 4 roject  --------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+Phase 5 roject  --------------------------------------------------------------------------------------------------------------------------
